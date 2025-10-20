@@ -33,11 +33,12 @@ export function useFolderCreation({ userId, currentFolder, onFolderCreated }: Us
     setCreatingFolder(true);
 
     try {
-      await axios.post("/api/folders/create", {
+      const folderCreated = await axios.post("/api/folders/create", {
         name: folderName.trim(),
         userId: userId,
         parentId: currentFolder,
       });
+      console.log("Folder created:", folderCreated.data);
 
       toast.success("Folder Created", {
         description: `Folder "${folderName}" has been created successfully.`,
